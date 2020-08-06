@@ -15,7 +15,7 @@ Create the following Azure resources in the [Azure Portal](https://portal.azure.
 
 ### Web Apps (In App Services)
 1. Create a Linux Web App with a .Net Core runtime stack for your dev environment
-1. Create a Linux Web App with a .Net Core runtime stack for your production environment 
+1. Create a Linux Web App with a .Net Core runtime stack for your production environment
 
 _We recommend that you give your dev and prod environments the same name, but give dev a "-dev" suffix._
 
@@ -31,7 +31,7 @@ Deeper Dive
 1. Use the ASP.Net Core Template as your starting point
 
 ###  Update the Build Pipeline to Run Tests and Publish Results
-1. Add a new .Net Core Test task in your Build Pipeline that will run before the publish task
+1. Add a new .Net Core Test task in your Build Pipeline that will run before the publish script
 1. Pass in the path to the csproj associated with the test project
 1. Make sure the task publishes the test results and code coverage
 
@@ -39,8 +39,8 @@ Deeper Dive
 1. Add a new .Net Core Script that Publishes your Application
 1. Specify the --output argument to output the final build to the `$(Build.ArtifactStagingDirectory)` path
 
-### Add a Publish Pipeline Artifact Task
-1. Add a new Publish Pipeline Artifacts Task to publish the contents of `$(Build.ArtifactStagingDirectory)`
+### Add a Publish Build Artifact Task
+1. Add a new Publish Build Artifacts Task to publish the contents of `$(Build.ArtifactStagingDirectory)`
 
 ### Generate the Pipeline Configuration
 1. Save the pipeline and commit the new pipeline script to your repository
