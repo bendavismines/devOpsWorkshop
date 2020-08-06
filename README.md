@@ -2,8 +2,8 @@
 
 ## Clone the Application Repository
 1. Create a new Azure Devops Organization and Project (https://dev.azure.com/)
-1. Clone the tutorial application repo from (https://github.com/bendavismines/devOpsWorkshop) to your local machine
-1. Push repository to your own Azure Project
+1. In the repos import the github repo (https://github.com/bendavismines/devOpsWorkshop) into Azure
+1. Clone the Azure repo onto your local machine
 
 ## Provisioning Azure Resources
 Create the following Azure resources in the [Azure Portal](https://portal.azure.com/#home). 
@@ -13,7 +13,7 @@ Create the following Azure resources in the [Azure Portal](https://portal.azure.
 - **Resource Groups are a logical way to organize related cloud resources**
 - **Use the free versions of these Azure resources**
 
-### Web Apps 
+### Web Apps (In App Services)
 1. Create a Linux Web App with a .Net Core runtime stack for your dev environment
 1. Create a Linux Web App with a .Net Core runtime stack for your production environment 
 
@@ -62,8 +62,7 @@ Deeper Dive
 
 ### Add Artifact
 1. Add a build artifact and specify the Build Pipeline you created 
-1. Enable continuous delivery on the release artifact
-cd .
+
 ### Create a Dev Stage
 1. Add a Deployment process Stage for Development
 1. Create a new Azure Web App Deploy Task for the Dev Stage
