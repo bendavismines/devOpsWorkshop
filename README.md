@@ -1,9 +1,11 @@
 # Enterprise DevOps Training
 
-## Clone the Application Repository
-1. Create a new Azure Devops Organization and Project (https://dev.azure.com/)
-1. In the repos import the github repo (https://github.com/bendavismines/devOpsWorkshop) into Azure
-1. Clone the Azure repo onto your local machine
+## [PREREQ] Clone the Application Repository
+1. Create a new Azure account
+1. Create a new Azure organization & project. Save the Repos Url.
+1. Clone the Github repo (https://github.com/bendavismines/devOpsWorkshop)
+1. Add a new remote `git remote add my_awesome_new_remote_name https://CrederaDevOps@dev.azure.com/CrederaDevOps/Test-Remote-Add/_git/Test-Remote-Add`
+1. Push code up to new repo! `git push -u my_awesome_new_remote_name --all`
 
 ## Provisioning Azure Resources
 Create the following Azure resources in the [Azure Portal](https://portal.azure.com/#home). 
@@ -28,15 +30,19 @@ Deeper Dive
 
 ## Setting Up Build Pipeline 
 1. Create a new Build Pipeline in your Azure DevOps Project
-1. Use the ASP.Net Core Template as your starting point
+1. Use the Starter pipeline template as your starting point
+
+**Notes for Success**
+- **Use the Show Assistant option under the "Save and run" button**
+- **Your cursor placement in the yaml file determines where the assistant pastes build steps**
 
 ###  Update the Build Pipeline to Run Tests and Publish Results
 1. Add a new .Net Core Test task in your Build Pipeline that will run before the publish script
-1. Pass in the path to the csproj associated with the test project
+1. Pass in the path to the .csproj associated with the test project
 1. Make sure the task publishes the test results and code coverage
 
 ### Add a Step to Build/Publish your .Net Application
-1. Add a new .Net Core Script that Publishes your Application
+1. Add a new .Net Core Publish task in your build pipeline that will build & publish your Application
 1. Specify the --output argument to output the final build to the `$(Build.ArtifactStagingDirectory)` path
 
 ### Add a Publish Build Artifact Task
@@ -50,7 +56,7 @@ Deeper Dive
 1. Navigate to the "Branches" page for your repo
 1. Use the ellipses to access the "Branch Policy" page for your Master branch
 1. Add a build validation policy which triggers the new build pipeline you've created
-1. Test your work! Create a branch off of master, make a change in the WeatherForecastController, push it to your repo, and create a pull request into master. Watch the build pipeline try to compile your code and run tests before it allows the PR to complete.
+1. Test your work! Create a branch off of master, modify UnitTest1.cs to cause a failure (Change the assert), push the branch to your repo, and create a pull request into master. Watch the build pipeline try to compile your code and run tests.
 
 Deeper Dive
 - Why should you use branch policies and what other types are there?
@@ -68,7 +74,7 @@ Deeper Dive
 1. Create a new Azure Web App Deploy Task for the Dev Stage
 1. In the new Task specify the correct directory for your artifact in the "Package or Folder" setting *(browse the artifact filepath to understand what is being published)*
 1. Specify the Web App as the dev Web App created at the beginning of the tutorial
-1. For the startup command use `dotnet {MyProjectNameHere}.dll` 
+1. For the startup command use `dotnet NeatProject.Api.dll` 
 1. Set the `ASPNETCORE_ENVIRONMENT` variable to the name of your intended appsettings.json environment file to load
 1. Test the Release! Run the release pipeline and visit your Dev Web App url and hit the /weatherforecast endpoint 
 
@@ -90,7 +96,7 @@ Deeper Dive
 1. Test the Release! Run the release pipeline and visit your Production Web App url and hit the /weatherforecast endpoint 
 
 ## Test it out! 
-1. On the branch you created earlier, change a value in the WeatherForecastController to something new and push it up
+1. On the branch you created earlier, change a value in the WeatherForecastController, change your test back to passing and push it up
 1. Merge the Pull Request into master when the PR has passed
 1. View the updated application on your dev server and your production server 
 
