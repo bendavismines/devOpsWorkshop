@@ -1,7 +1,7 @@
 # Enterprise DevOps Training
 
 ## [PREREQ] Clone the Application Repository
-1. Create a new Azure account
+1. Create a free Azure account
 1. Create a new Azure organization & project. Save the Repos Url.
 1. Clone the Github repo (https://github.com/bendavismines/devOpsWorkshop)
 1. Add a new remote `git remote add my_awesome_new_remote_name https://CrederaDevOps@dev.azure.com/CrederaDevOps/Test-Remote-Add/_git/Test-Remote-Add`
