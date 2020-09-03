@@ -4,8 +4,8 @@
 1. Create a free Azure account
 1. Create a new Azure organization & project. Save the Repos Url.
 1. Clone the Github repo (https://github.com/bendavismines/devOpsWorkshop)
-1. Add a new remote `git remote add my_awesome_new_remote_name <cloning url to your repo>`
-1. Push code up to new repo! `git push -u my_awesome_new_remote_name --all`
+1. Add a new remote `git remote add <come up with remote name> <cloning url to your repo>`
+1. Push code up to new repo! `git push -u <remote name> --all`
 
 ## Provisioning Azure Resources
 Create the following Azure resources in the [Azure Portal](https://portal.azure.com/#home). 
