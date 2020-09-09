@@ -12,14 +12,20 @@ Create the following Azure resources in the [Azure Portal](https://portal.azure.
 
 **Notes for Success**
 - **All resources should be created in the same region.**
-- **Resource Groups are a logical way to organize related cloud resources**
-- **Use the free versions of these Azure resources**
+- **Resource Groups are a logical way to organize related cloud resources. We recommend creating a new group that you will use for all tasks you create in this workshop.**
+- **Use the free versions of these Azure resources.**
 
 ### Web Apps (In App Services)
-1. Create a Linux Web App with a .Net Core runtime stack for your dev environment
-1. Create a Linux Web App with a .Net Core runtime stack for your production environment
-
-_We recommend that you give your dev and prod environments the same name, but give dev a "-dev" suffix._
+1. Create a Web App in Azure for your dev environment
+    - Linux
+    - .Net Core 3.1 runtime stack
+    - Free tier sku/size
+  
+> _We recommend that you give your dev and prod environments the same name, but give dev a "-dev" suffix._
+2. Create a Linux Web App with a .Net Core runtime stack and free tier sku/size for your production environment
+    - Linux
+    - .Net Core 3.1 runtime stack
+    - Free tier sku/size
 
 Deeper Dive
 - Why do you have use different environments? 
@@ -28,9 +34,10 @@ Deeper Dive
   Development environments are usually intended for integrating all dev changes together.
   Test/Staging environments are a stable environment that is as close to production-like as possible to run final tests before deployment.
 
-## Setting Up Build Pipeline 
+## Setting Up the Build Pipeline 
 1. Create a new Build Pipeline in your Azure DevOps Project
 1. Use the Starter pipeline template as your starting point
+1. Add the below tasks at the bottom of the .yaml file
 
 **Notes for Success**
 - **Use the Show Assistant option under the "Save and run" button**
@@ -38,14 +45,14 @@ Deeper Dive
 
 ###  Update the Build Pipeline to Run Tests and Publish Results
 1. Add a new .Net Core Test task in your Build Pipeline that will run before the publish script
-1. Pass in the path to the .csproj associated with the test project
+1. Pass in the path to the .csproj associated with the test project (*.tests.csproj)
 1. Make sure the task publishes the test results and code coverage
 
 ### Add a Step to Build/Publish your .Net Application
 1. Add a new .Net Core Publish task in your build pipeline that will build & publish your Application
 1. Specify the --output argument to output the final build to the `$(Build.ArtifactStagingDirectory)` path
 
-### Add a Publish Build Artifact Task
+### Add a Publish Build Artifacts Task
 1. Add a new Publish Build Artifacts Task to publish the contents of `$(Build.ArtifactStagingDirectory)`
 
 ### Generate the Pipeline Configuration
@@ -70,12 +77,13 @@ Deeper Dive
 1. Add a build artifact and specify the Build Pipeline you created 
 
 ### Create a Dev Stage
-1. Add a Deployment process Stage for Development
+1. Add a new Dev Stage to your Release Pipeline (use the empty job template)
 1. Create a new Azure Web App Deploy Task for the Dev Stage
 1. In the new Task specify the correct directory for your artifact in the "Package or Folder" setting *(browse the artifact filepath to understand what is being published)*
 1. Specify the Web App as the dev Web App created at the beginning of the tutorial
 1. For the startup command use `dotnet NeatProject.Api.dll` 
-1. Set the `ASPNETCORE_ENVIRONMENT` variable to the name of your intended appsettings.json environment file to load
+1. Set the `ASPNETCORE_ENVIRONMENT` variable to the name of your intended appsettings.json environment file to load. 
+    > Set the environment variable in “Application and Configuration Settings” -> “App Settings” using syntax like -VARIABLE “setting text”
 1. Test the Release! Run the release pipeline and visit your Dev Web App url and hit the /weatherforecast endpoint 
 
 Deeper Dive
@@ -83,13 +91,9 @@ Deeper Dive
 
   Pipelines require a build agent that will execute the build or deployment steps that are being configured in Azure DevOps. Build agents can be Linux, MacOS, or Windows machines. The specification required depends on what you are building in your pipeline.
 
-- What are the environment variables that are created?
-
-  *How do we find the name needed?*
-
 - What is the App Settings File?
 
-  There is a root appsettings.json and appsettings.{env}.json file for each environment that is being loaded according the value of the `ASPNETCORE_ENVIRONEMNT` variable. The example we have is logging. A user may want to log all warnings and information logs in the Dev environment, but the minimize noise only errors will be logged in Production. 
+  There is a root appsettings.json and appsettings.{env}.json file for each environment that is being loaded according the value of the `ASPNETCORE_ENVIRONMENT` variable. The example we have is logging. A user may want to log all warnings and information logs in the Dev environment, but the minimize noise only errors will be logged in Production. 
 
 ## Setting Up Production Pipeline
 1. Create a Production Stage in your Release Pipeline in the same way you created the dev stage but this time release to your Production Web App with the correct `ASPNETCORE_ENVIRONMENT` variable
@@ -99,6 +103,11 @@ Deeper Dive
 1. On the branch you created earlier, change a value in the WeatherForecastController, change your test back to passing and push it up
 1. Merge the Pull Request into master when the PR has passed
 1. View the updated application on your dev server and your production server 
+
+## Clean Up
+1. In Azure Portal view all resource groups 
+1. Find the resource group you created for this workshop and delete it. 
+    > When you delete a resource group all related resources will be deleted with the resource group.
 
 ## Extra Credit 
 
