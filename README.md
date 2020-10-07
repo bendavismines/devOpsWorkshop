@@ -45,7 +45,7 @@ Deeper Dive
 
 ###  Update the Build Pipeline to Run Tests and Publish Results
 1. Add a new .Net Core Test task in your Build Pipeline that will run before the publish script
-1. Pass in the path to the .csproj associated with the test project (*.tests.csproj)
+1. Pass in the path to the .csproj associated with the test project (**/*.Tests.csproj)
 1. Make sure the task publishes the test results and code coverage
 
 ### Add a Step to Build/Publish your .Net Application
