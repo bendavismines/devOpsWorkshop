@@ -84,7 +84,7 @@ Deeper Dive
 1. For the startup command use `dotnet NeatProject.Api.dll` 
 1. Set the `ASPNETCORE_ENVIRONMENT` variable to the name of your intended appsettings.json environment file to load. 
     > Set the environment variable in “Application and Configuration Settings” -> “App Settings” using syntax like -VARIABLE “setting text”
-1. Test the Release! Run the release pipeline and visit your Dev Web App url and hit the /weatherforecast endpoint 
+1. Test the Release! Run the release pipeline and visit your Dev Web App url and hit the /api/todoitems endpoint 
 
 Deeper Dive
 - What is the Agent Job?
