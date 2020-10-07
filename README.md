@@ -53,7 +53,7 @@ Deeper Dive
 1. Specify the --output argument to output the final build to the `$(Build.ArtifactStagingDirectory)` path
 
 ### Add a Publish Build Artifacts Task
-1. Add a new Publish Build Artifacts Task to publish the contents of `$(Build.ArtifactStagingDirectory)`
+1. Add a new Publish Pipeline Artifacts Task to publish the contents of `$(Build.ArtifactStagingDirectory)`
 
 ### Generate the Pipeline Configuration
 1. Save the pipeline and commit the new pipeline script to your repository
