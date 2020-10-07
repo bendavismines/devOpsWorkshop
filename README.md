@@ -97,7 +97,7 @@ Deeper Dive
 
 ## Setting Up Production Pipeline
 1. Create a Production Stage in your Release Pipeline in the same way you created the dev stage but this time release to your Production Web App with the correct `ASPNETCORE_ENVIRONMENT` variable
-1. Test the Release! Run the release pipeline and visit your Production Web App url and hit the /weatherforecast endpoint 
+1. Test the Release! Run the release pipeline and visit your Production Web App url and hit the /api/todoitems endpoint 
 
 ## Test it out! 
 1. On the branch you created earlier, change a value in the WeatherForecastController, change your test back to passing and push it up
